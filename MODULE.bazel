@@ -1,0 +1,23 @@
+bazel_dep(
+    name = "env"
+)
+
+git_override(
+    module_name = "env",
+    remote = "https://github.com/vvviktor/bazel-mingw-toolchain.git",
+    commit = "50333d6fae4f5331339533b06f65d4e5eb12f9d3",
+)
+
+register_execution_platforms(
+    "@env//platform:windows_platform"
+)
+
+register_toolchains(
+    "@env//toolchain:mingw_cc_toolchain",
+)
+
+bazel_dep(name = "rules_cc", version = "0.0.9")
+bazel_dep(name="platforms", version="0.0.8")
+
+non_mod_zlib = use_extension("//ext_defs:non_mod_deps.bzl", "non_mod_zlib")
+use_repo(non_mod_zlib, "zlib")
