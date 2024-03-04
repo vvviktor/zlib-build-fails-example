@@ -6,21 +6,13 @@
 ###############################################################################
 
 bazel_dep(
-    name = "env"
+    name = "mingw_toolchain"
 )
 
 git_override(
-    module_name = "env",
+    module_name = "mingw_toolchain",
     remote = "https://github.com/vvviktor/bazel-mingw-toolchain.git",
-    commit = "50333d6fae4f5331339533b06f65d4e5eb12f9d3",
-)
-
-register_execution_platforms(
-    "@env//platform:windows_platform"
-)
-
-register_toolchains(
-    "@env//toolchain:mingw_cc_toolchain",
+    commit = "0ea42a31c45f0ff146058cecd124053b6915205e",
 )
 
 bazel_dep(name = "zlib", version = "1.3.1")
